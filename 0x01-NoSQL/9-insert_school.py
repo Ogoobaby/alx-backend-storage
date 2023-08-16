@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""inserts a new document in a collection"""
+'''Task 9's module.
+'''
+
 
 def insert_school(mongo_collection, **kwargs):
-    """
-    mongo_collection will be the pymongo collection object
-    Returns the new _id
-    """
-    new_document = mongo_collection.insert_one(kwargs)
-    return new_document.inserted_id
+    '''Inserts a new document in a collection.
+    '''
+    result = mongo_collection.insert_one(kwargs)
+    return result.inserted_id

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""function that lists all documents"""
+'''Task 8's module.
+'''
+
 
 def list_all(mongo_collection):
-    """
-    empty list if no document in the collection
-    """
-    return mongo_collection.find()
+    '''Lists all documents in a collection.
+    '''
+    return [doc for doc in mongo_collection.find()]

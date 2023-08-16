@@ -1,14 +1,28 @@
 #!/usr/bin/env python3
-""" returns all students sorted by average score"""
+'''Task 14's module.
+'''
+
 
 def top_students(mongo_collection):
-    """
-    The top must be ordered
-    """
-    return mongo_collection.aggregate([
-        {"$project": {
-            "name": "$name",
-            "averageScore": {"$avg": "$topics.score"}
-        }},
-        {"$sort": {"averageScore": -1}}
-    ])
+    '''Prints all students in a collection sorted by average score.
+    '''
+    students = mongo_collection.aggregate(
+        [
+            {
+                '$project': {
+                    '_id': 1,
+                    'name': 1,
+                    'averageScore': {
+                        '$avg': {
+                            '$avg': '$topics.score',
+                        },
+                    },
+                    'topics': 1,
+                },
+            },
+            {
+                '$sort': {'averageScore': -1},
+            },
+        ]
+    )
+    return students
